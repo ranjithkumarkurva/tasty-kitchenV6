@@ -13,6 +13,12 @@ import {
   NotFoundDescription,
   NotFoundButton,
   OrderNowButton,
+  CostContainer,
+  TotalCostHeading,
+  TotalCostPrize,
+  TotalCostHeadingSm,
+  TotalCostPrizeSm,
+  RemoveAllButton,
 } from './StyledComponents'
 import ToggleChanges from '../../Context/ToggleChanges'
 import OrderListsDetails from '../OrderListsDetails'
@@ -20,15 +26,17 @@ import Footer from '../Footer'
 import Header from '../Header'
 
 class OrderLists extends Component {
+  cartList = []
+
+  sumOrder = cost => {
+    this.setState(prevState => ({
+      totalCost: prevState.totalCost + cost,
+    }))
+  }
+
   goToMenu = () => {
     const {history} = this.props
     history.replace('')
-  }
-
-  goToOrderSuccessPage = () => {
-    const {history} = this.props
-    history.replace('/orderSuccess')
-    console.log('Hi')
   }
 
   render() {
@@ -36,8 +44,28 @@ class OrderLists extends Component {
       <ToggleChanges.Consumer>
         {value => {
           const {SavedList} = value
+
+          const CartItem = localStorage.getItem('cartData')
+          const cartItems = JSON.parse(CartItem)
+
+          let totalCost = 0
+          SavedList.forEach(eachCartItem => {
+            totalCost += eachCartItem.cost * (eachCartItem.count + 1)
+          })
+
+          const removeCartList = () => {
+            const {history} = this.props
+            history.replace('/order')
+            SavedList.length = 0
+          }
+
+          const goToOrderSuccessPage = () => {
+            const {history} = this.props
+            history.replace('/orderSuccess')
+            SavedList.length = 0
+          }
+
           const CartLength = SavedList.length === 0
-          console.log(CartLength)
 
           return (
             <OrderListMainBgContainer>
@@ -60,25 +88,36 @@ class OrderLists extends Component {
               ) : (
                 <OrderListBgContainer>
                   <Header />
+
                   <OrderListSubBgContainer>
                     <OrderListContainer>
                       <OrderListName>Item</OrderListName>
                       <Quantity>Quantity</Quantity>
                       <OrderListPrice>Price</OrderListPrice>
+                      <RemoveAllButton type="button" onClick={removeCartList}>
+                        Remove All
+                      </RemoveAllButton>
                     </OrderListContainer>
-                    {SavedList.map(eachOne => (
+                    {cartItems.map(eachOne => (
                       <OrderListsDetails
                         eachOrderList={eachOne}
+                        cost={eachOne.cost}
                         id={eachOne.id}
                       />
                     ))}
+                    <Hr />
+                    <CostContainer>
+                      <TotalCostHeading>Total Cost:</TotalCostHeading>
+                      <TotalCostPrize>₹{totalCost}.00</TotalCostPrize>
+                      <TotalCostHeadingSm>Total Cost:</TotalCostHeadingSm>
+                      <TotalCostPrizeSm>₹{totalCost}.00</TotalCostPrizeSm>
+                    </CostContainer>
                     <OrderNowButton
                       type="button"
-                      onClick={this.goToOrderSuccessPage}
+                      onClick={goToOrderSuccessPage}
                     >
-                      Order Now
+                      Place Order
                     </OrderNowButton>
-                    <Hr />
                   </OrderListSubBgContainer>
                   <Footer />
                 </OrderListBgContainer>

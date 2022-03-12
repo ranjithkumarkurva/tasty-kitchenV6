@@ -9,6 +9,7 @@ import {
   ProductHeaderContainer,
   ProductHeaderSelect,
   ProductHeaderOption,
+  Hr,
 } from './StyledComponents'
 
 const sortByOptions = [
@@ -60,6 +61,7 @@ const ProductHeader = () => (
               </ProductHeaderSelect>
             </ProductHeaderContainer>
           </ProductHeaderBgContainer>
+          <Hr />
         </ProductHeaderMainBgContainer>
       )
     }}

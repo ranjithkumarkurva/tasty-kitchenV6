@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const CarouselImage = styled.img`
-  width: 80%;
-  height: 32vh;
+  width: 70%;
+  height: 20%;
   @media (max-width: 768px) {
-    height: 22vh;
+    width: 100%;
+    height: 20%;
   }
 `
 

@@ -27,10 +27,12 @@ const Header = props => {
   return (
     <>
       <HeaderBgContainer>
-        <HeaderSubBg>
-          <HeaderImage src="https://res.cloudinary.com/dpzasrsyq/image/upload/v1633002399/Tasty%20Kitchen%20Images/Login1_oud4ou.png" />
-          <HeaderName>Tasty Kitchen</HeaderName>
-        </HeaderSubBg>
+        <Linked to="/">
+          <HeaderSubBg>
+            <HeaderImage src="https://res.cloudinary.com/dpzasrsyq/image/upload/v1633002399/Tasty%20Kitchen%20Images/Login1_oud4ou.png" />
+            <HeaderName>Tasty Kitchen</HeaderName>
+          </HeaderSubBg>
+        </Linked>
         <HeaderSubBg>
           <Linked to="/">
             <HeaderPageNames>Home</HeaderPageNames>
@@ -44,13 +46,13 @@ const Header = props => {
         <Popup
           trigger={
             <MenuIcon type="button">
-              <GiHamburgerMenu size="28" color="#231F20" />
+              <GiHamburgerMenu size="25" color="#231F20" />
             </MenuIcon>
           }
           modal
           nested
           closeOnDocumentClick="false"
-          position="bottom center"
+          position="top"
           on="click"
         >
           {close => (

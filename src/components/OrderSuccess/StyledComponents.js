@@ -12,7 +12,7 @@ export const SuccessMainBgContainer = styled.div`
 export const SuccessBgContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   height: 100vh;
   background-color: white;
 `

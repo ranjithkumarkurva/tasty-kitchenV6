@@ -1,18 +1,16 @@
-import {HomeBgContainer, HomeMainBgContainer} from './StyledComponents'
+import {HomeBgContainer} from './StyledComponents'
 import Header from '../Header'
 import Product from '../Product'
 import Carousel from '../Carousel'
 import Footer from '../Footer'
 
 const Home = () => (
-  <HomeMainBgContainer>
-    <HomeBgContainer>
-      <Header />
-      <Carousel />
-      <Product />
-      <Footer />
-    </HomeBgContainer>
-  </HomeMainBgContainer>
+  <HomeBgContainer>
+    <Header />
+    <Carousel />
+    <Product />
+    <Footer />
+  </HomeBgContainer>
 )
 
 export default Home

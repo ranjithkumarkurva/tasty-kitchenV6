@@ -22,25 +22,31 @@ class RestaurantDetails extends Component {
     return (
       <ToggleChanges.Consumer>
         {value => {
-          const {addToSavedList, onUpdateCount} = value
+          const {addToSavedList, onUpdatedCount} = value
           const {eachRestaurantDetails} = this.props
           const {count} = this.state
+          const cartData = []
+
           const {imageUrl, name, cost} = eachRestaurantDetails
           const addToCart = count === 0
+          const nameLength = name.length === 15
 
           const onAddToList = () => {
-            addToSavedList(eachRestaurantDetails)
+            addToSavedList({...eachRestaurantDetails, count})
+
             this.setState(prevState => ({
               count: prevState.count + 1,
             }))
-            onUpdateCount(count)
           }
 
           const onIncrement = () => {
             this.setState(prevState => ({
               count: prevState.count + 1,
             }))
-            onUpdateCount(count)
+            cartData.push({...eachRestaurantDetails, count})
+
+            addToSavedList({...eachRestaurantDetails, count})
+            onUpdatedCount(count)
           }
 
           const onDecrement = () => {
@@ -48,24 +54,36 @@ class RestaurantDetails extends Component {
               this.setState(prevState => ({
                 count: prevState.count - 1,
               }))
+              localStorage.setItem(
+                'cartData',
+                JSON.stringify({...eachRestaurantDetails, count}),
+              )
+              addToSavedList({...eachRestaurantDetails, count})
             }
-            onUpdateCount(count)
+            onUpdatedCount(count)
           }
 
           return (
             <ProductDetailsBgContainer>
               <ProductImage src={imageUrl} alt={name} />
               <ProductDetailsSubBg>
-                <ProductName>{name}</ProductName>
-                <ProductCost>${cost}.00</ProductCost>
+                {nameLength ? (
+                  <ProductName title={name}>{name}</ProductName>
+                ) : (
+                  <ProductName title={name}>{name.slice(0, 15)}...</ProductName>
+                )}
+                {/* <ProductName>{name}</ProductName> */}
+                <ProductCost>₹{cost}.00</ProductCost>
                 <StarContainer>
                   <AiFillStar size="20" color="#FFCC00" />
                   <ProductRating>4.4</ProductRating>
                 </StarContainer>
                 {addToCart ? (
-                  <AddButton type="button" onClick={onAddToList}>
-                    ADD
-                  </AddButton>
+                  <div>
+                    <AddButton type="button" onClick={onAddToList}>
+                      ADD
+                    </AddButton>
+                  </div>
                 ) : (
                   <CountContainer>
                     <CountButton type="button" onClick={onDecrement}>

@@ -12,19 +12,27 @@ export const ProductMainBgContainer = styled.div`
 export const ProductBgContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   background-color: white;
 `
 
 export const ProductSubBgContainer = styled.div`
-  overflow-y: scroll;
+  //   overflow-y: scroll;
 `
 
 export const ProductContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-left: 0px;
+  @media (max-width: 754px;) {
+    justify-content: center;
+  }
+  @media (max-width: 754px;) and (max-width: 930px) {
+    padding-left: 0px;
+    justify-content: flex-start;
+  }
 `
 
 export const RestaurantDetailBg = styled.div`
@@ -109,7 +117,7 @@ export const RestaurantDetailsViewImage = styled.img`
     height: 30vh;
     border-radius: 30vh;
     margin-bottom: 15vh;
-    margin-right: 20px;
+    margin-right: 0px;
     padding-left: 0px;
   }
 `
@@ -126,6 +134,24 @@ export const RestaurantCuisine = styled.h1`
   font-weight: 400;
 `
 
+export const RestaurantLocation = styled.h1`
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`
+
+export const RestaurantLocationSm = styled.h1`
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`
+
 export const StarMainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -135,6 +161,9 @@ export const StarMainContainer = styled.div`
 export const StarContainer = styled.div`
   display: flex;
   margin-top: 5px;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `
 
 export const StarImage = styled.i`
@@ -152,6 +181,9 @@ export const ProductRating = styled.h1`
   margin: 0px;
   margin-left: 10px;
   color: white;
+  @media (max-width: 500px) {
+    display: none;
+  }
 `
 
 export const PipeLine = styled.hr`
@@ -229,6 +261,58 @@ export const AddButton = styled.button`
   background-color: transparent;
   padding: 5px;
   width: 7vh;
+`
+
+export const NotFoundBgContainer = styled.div`
+  background-color: white;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const NotFoundImage = styled.img`
+  width: 20vh;
+  height: 20vh;
+`
+
+export const NotFoundHeading = styled.h1`
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 48px;
+  color: #1e293b;
+  margin: 0px;
+`
+
+export const NotFoundDescription = styled.p`
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 48px;
+  color: #475569;
+  margin: 0px;
+`
+
+export const NotFoundButton = styled.button`
+  background-color: #f7931e;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+  margin: 10px;
+`
+
+export const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `
 
 export default styled

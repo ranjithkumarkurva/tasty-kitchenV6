@@ -12,8 +12,8 @@
 }
 
 .logout-button {
-  width: 8vh;
-  height: 3vh;
+  /* width: 8vh;
+  height: 3vh; */
   background-color: #f7931e;
   border: none;
   outline: none;
@@ -22,6 +22,7 @@
   font-weight: bold;
   border-radius: 8px;
   font-family: DM Sans;
-  margin-top: 10px;
-  margin-right: 25px;
+  margin-top: 3px;
+  margin-right: 20px;
+  padding-top: 0px;
 }

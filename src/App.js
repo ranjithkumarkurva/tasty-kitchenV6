@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import './App.css'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
@@ -11,29 +11,88 @@ import ToggleChanges from './Context/ToggleChanges'
 import ProtectedRoute from './components/ProtectedRoute'
 
 class App extends Component {
-  state = {activeRating: '', SavedList: [], count: 0, onClickAdd: false}
+  state = {activeRating: '', SavedList: [], count: 0}
 
   changeActiveRating = activeRating => {
     this.setState({activeRating})
   }
 
   addToSavedList = Food => {
+    const {SavedList} = this.state
+    //  localStorage.setItem('cartData', JSON.stringify(Food))
+
+    const foodObject = SavedList.find(
+      eachFoodItem => eachFoodItem.id === Food.id,
+    )
+
+    if (foodObject) {
+      this.setState(prevState => ({
+        SavedList: prevState.SavedList.map(eachFoodItem => {
+          if (foodObject.id === eachFoodItem.id) {
+            const onUpdateCount = eachFoodItem.count + 1
+            return {...eachFoodItem, count: onUpdateCount}
+          }
+
+          return eachFoodItem
+        }),
+      }))
+    } else {
+      const updatedFoodList = [...SavedList, Food]
+      this.setState({SavedList: updatedFoodList})
+    }
+  }
+
+  incrementCartItemQuantity = id => {
     this.setState(prevState => ({
-      SavedList: [...prevState.SavedList, Food],
+      SavedList: prevState.SavedList.map(eachFoodItem => {
+        if (id === eachFoodItem.id) {
+          const updatedQuantity = eachFoodItem.count + 1
+
+          return {...eachFoodItem, count: updatedQuantity}
+        }
+        return eachFoodItem
+      }),
     }))
   }
 
-  onClickChange = onClickAdd => {
-    this.setState({onClickAdd})
+  decrementCartItemQuantity = id => {
+    const {SavedList} = this.state
+    const productObject = SavedList.find(eachFoodItem => eachFoodItem.id === id)
+    if (productObject.count >= 1) {
+      this.setState(prevState => ({
+        SavedList: prevState.SavedList.map(eachFoodItem => {
+          if (id === eachFoodItem.id) {
+            const updatedQuantity = eachFoodItem.count - 1
+            return {...eachFoodItem, count: updatedQuantity}
+          }
+          return eachFoodItem
+        }),
+      }))
+    }
   }
 
-  onUpdateCount = count => {
+  //   removeCartItem = () => {
+  //     const {SavedList} = this.props
+  //     const updatedList = SavedList.filter(eachCartItem => eachCartItem.id !== id)
+  //     this.setState({SavedList: updatedList})
+  //   }
+
+  removeCartItem = id => {
+    const {SavedList} = this.state
+    const updatedCartList = SavedList.filter(
+      eachCartItem => eachCartItem.id !== id,
+    )
+
+    this.setState({SavedList: updatedCartList})
+  }
+
+  onUpdatedCount = count => {
     this.setState({count})
   }
 
   render() {
-    const {activeRating, SavedList, count, onClickAdd} = this.state
-    console.log(SavedList)
+    const {activeRating, SavedList, count} = this.state
+    // localStorage.setItem('cartData', JSON.stringify(SavedList))
 
     return (
       <ToggleChanges.Provider
@@ -43,9 +102,10 @@ class App extends Component {
           SavedList,
           addToSavedList: this.addToSavedList,
           count,
-          onUpdateCount: this.onUpdateCount,
-          onClickAdd,
-          onClickChange: this.onClickChange,
+          onUpdatedCount: this.onUpdatedCount,
+          removeCartItem: this.removeCartItem,
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
         }}
       >
         <BrowserRouter>
@@ -59,7 +119,8 @@ class App extends Component {
               component={OrderSuccess}
             />
             <ProtectedRoute exact path="/:id" component={Restaurant} />
-            <ProtectedRoute path="/not-found" component={NotFound} />
+            <Route path="/not-found" component={NotFound} />
+            <Redirect to="not-found" />
           </Switch>
         </BrowserRouter>
       </ToggleChanges.Provider>

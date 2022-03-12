@@ -1,14 +1,15 @@
 import React from 'react'
 
 const ToggleChanges = React.createContext({
-  activeRating: 'Highest',
+  activeRating: 'Lowest',
   ChangeActiveRating: () => {},
   SavedList: [],
   addToSavedList: () => {},
-  Count: 1,
-  onUpdateCount: () => {},
-  onClickAdd: false,
-  onClickChange: () => {},
+
+  onUpdatedCount: () => {},
+  removeCartItem: () => {},
+  incrementCartItemQuantity: () => {},
+  decrementCartItemQuantity: () => {},
 })
 
 export default ToggleChanges

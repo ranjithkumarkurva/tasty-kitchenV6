@@ -136,7 +136,7 @@ export const LoginLabel = styled.label`
   margin-top: 20px;
   margin-bottom: 5px;
   @media (max-width: 768px) {
-    font-size: 5px;
+    font-size: 12px;
     font-weight: 100;
   }
 `

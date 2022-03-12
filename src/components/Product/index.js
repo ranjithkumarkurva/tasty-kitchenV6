@@ -20,7 +20,7 @@ class Product extends Component {
   state = {
     ProductsList: [],
     activeRating: '',
-    offset: 0,
+    offset: 1,
     inProgress: false,
   }
 
@@ -43,7 +43,6 @@ class Product extends Component {
     }
     const response = await fetch(apiUrl, options)
     const data = await response.json()
-    console.log('data', data)
 
     const updatedData = data.restaurants.map(eachProduct => ({
       id: eachProduct.id,
@@ -57,10 +56,10 @@ class Product extends Component {
 
   onDecreaseLimit = () => {
     const {offset} = this.state
-    if (offset !== 0) {
+    if (offset !== 1) {
       this.setState(
         prevState => ({
-          offset: prevState.offset - 9,
+          offset: prevState.offset - 8,
         }),
         this.getProductList,
       )
@@ -72,7 +71,7 @@ class Product extends Component {
     if (offset <= 24) {
       this.setState(
         prevState => ({
-          offset: prevState.offset + 9,
+          offset: prevState.offset + 8,
         }),
         this.getProductList,
       )
@@ -116,7 +115,7 @@ class Product extends Component {
                   <GrPrevious size="20" />
                 </PrevButton>
                 <PagesNumbers>{offset}</PagesNumbers>
-                <PagesNumbers>to</PagesNumbers>
+                <PagesNumbers> to </PagesNumbers>
                 <PagesNumbers>30</PagesNumbers>
                 <NextButton type="button" onClick={this.onIncreaseLimit}>
                   <GrNext size="20" />

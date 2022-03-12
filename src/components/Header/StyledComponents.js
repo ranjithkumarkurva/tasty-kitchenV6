@@ -10,10 +10,12 @@ export const HeaderBgContainer = styled.div`
   padding: 20px;
   padding-left: 10vh;
   padding-right: 15vh;
-  margin-bottom: 5vh;
-  @media (max-width: 768px) {
+  position: sticky;
+  top: 0;
+  @media (orientation: portrait) {
     padding-left: 0vh;
-    padding-right: 8vh;
+    padding-right: 5vh;
+    width: 100%;
   }
 `
 
@@ -25,7 +27,7 @@ export const HeaderImage = styled.img`
   width: 53px;
   height: 43px;
   align-self: center;
-  margin-right: 20px;
+  margin-right: 0px;
   margin-left: 50px;
 `
 
@@ -56,8 +58,7 @@ export const HeaderPageNames = styled.h1`
 `
 
 export const LogoutButton = styled.button`
-  width: 8vh;
-  height: 3vh;
+  padding: 6px;
   background-color: #f7931e;
   border: none;
   outline: none;
@@ -66,11 +67,7 @@ export const LogoutButton = styled.button`
   font-weight: bold;
   border-radius: 8px;
   font-family: DM Sans;
-  &:hover {
-    font-size: 20px;
-    width: 10vh;
-    height: 5vh;
-  }
+  margin-top: 8px;
   @media (max-width: 768px) {
     display: none;
   }
@@ -80,18 +77,18 @@ export const MenuIcon = styled.button`
   outline: none;
   border: none;
   background-color: transparent;
+  justify-content: flex-end;
   @media (min-width: 769px) {
     display: none;
   }
 `
 export const SmBgContainer = styled.div`
   background-color: #fafafa;
-  width: 50vh;
-  height: 10vh;
-  margin-top: 40vh;
+  width: 100%;
+  padding: 10px;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  //align-items: center;
 `
 export const SmMainBgContainer = styled.div`
   display: flex;

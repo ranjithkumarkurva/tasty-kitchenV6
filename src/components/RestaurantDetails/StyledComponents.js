@@ -2,20 +2,28 @@ import styled from 'styled-components'
 
 export const ProductDetailsBgContainer = styled.li`
   display: flex;
+  width: 450px;
   margin: 20px;
-  width: 40vh;
+  @media (orientation: portrait) {
+    margin: 10px;
+  }
 `
 
 export const ProductImage = styled.img`
-  width: 250px;
-  height: 180px;
+  width: 270px;
+  height: 170px;
   border-radius: 18px;
-  padding: 15px;
+  padding: 10px;
+  @media (max-width: 754px;) {
+    width: 230px;
+    height: 100px;
+  }
 `
 
 export const ProductDetailsSubBg = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 `
 
 export const ProductName = styled.h1`
@@ -26,7 +34,10 @@ export const ProductName = styled.h1`
   color: #334155;
   letter-spacing: 0.2px;
   margin: 0px;
-  margin-top: 15px;
+  @media (max-width: 754px;) {
+    font-size: 18px;
+    font-weight: 300;
+  }
 `
 
 export const ProductCost = styled.p`
@@ -35,18 +46,13 @@ export const ProductCost = styled.p`
   font-weight: normal;
   font-size: 14px;
   color: #334155;
-  margin: 8px;
-  margin-top: 10px;
 `
 export const StarContainer = styled.div`
   display: flex;
-  margin-top: 5px;
-  margin-bottom: 10px;
 `
 
 export const StarImage = styled.i`
   width: 4vh;
-  margin: 10px;
 `
 
 export const ProductRating = styled.h1`
@@ -57,7 +63,6 @@ export const ProductRating = styled.h1`
   color: #334155;
   letter-spacing: 0.2px;
   margin: 0px;
-  margin-left: 10px;
 `
 
 export const AddButton = styled.button`
@@ -67,7 +72,6 @@ export const AddButton = styled.button`
   outline: none;
   background-color: transparent;
   padding: 5px;
-  width: 7vh;
 
   &:hover {
     background-color: #ffa412;
@@ -79,15 +83,17 @@ export const AddButton = styled.button`
 export const CountContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 `
 
 export const CountButton = styled.button`
   color: #475569;
   border: 1px solid #475569;
   background-color: transparent;
-  padding: 1px;
-  width: 2vh;
-  height: 2vh;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 6px;
+  padding-right: 6px;
 `
 
 export const CountNumber = styled.h1`
@@ -95,6 +101,7 @@ export const CountNumber = styled.h1`
   font-size: 10px;
   margin: 7px;
   margin-top: 0px;
+  align-self: center;
 `
 
 export default styled

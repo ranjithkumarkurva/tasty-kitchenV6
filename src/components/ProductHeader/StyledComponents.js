@@ -2,16 +2,18 @@ import styled from 'styled-components'
 
 export const ProductHeaderMainBgContainer = styled.div`
   display: flex;
-  justify-content: center;
-  margin-top: 15vh;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  margin-right: 0px;
 `
 
 export const ProductHeaderBgContainer = styled.div`
-  width: 82%;
+  width: 85%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding-left: 40px;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -31,6 +33,15 @@ export const ProductHeaderName = styled.h1`
   margin-left: 0px;
 `
 
+export const Hr = styled.hr`
+  border-bottom: 0.5px solid #183b56;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 80%;
+  margin-top: 30px;
+`
+
 export const ProductHeaderDescription = styled.p`
   font-family: DM Sans;
   font-style: italic;
@@ -38,7 +49,7 @@ export const ProductHeaderDescription = styled.p`
   color: #183b56;
   margin: 0px;
   @media (max-width: 768px) {
-    font-size: 10px;
+    font-size: 15px;
   }
 `
 
